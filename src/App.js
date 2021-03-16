@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+class App extends React.Component  {
+    constructor(props){
+      super(props);
+      this.state = {
+        userName: 'гость',
+      }
+     
+    }
+ 
+    greetingText(){
+      return(
+        <p>Привет, { this.state.userName }  !  </p>
+      )
+    }
+    handleChange(event){
+      if(event.target.value === ""){
+        this.setState({userName : 'гость'});
+      }
+      else this.setState({userName : event.target.value});
+    }
+  render(){
+    return (
+     
+          <div className="App">
+            {this.greetingText() }
+         
+            <input type="text" placeholder="Введите Ваше имя" onBlur ={(event) => this.handleChange(event)}></input>
+          </div>
+      
+    );
+  }
+}
 export default App;
